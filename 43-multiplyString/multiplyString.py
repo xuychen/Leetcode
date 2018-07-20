@@ -8,18 +8,15 @@ class Solution(object):
         :rtype: [int]
         """
         
-        nums = [0] * (len(num) + 1)
+        nums = [0] * len(num)
         aDigit = ord(digit) - ASCII0
-        carryOn = 0
         
         for index in range(len(num)-1, -1, -1):
             chr = num[index]
             bDigit = ord(chr) - ASCII0
-            result = aDigit * bDigit + carryOn
-            nums[index+1] = result % 10
-            carryOn = (result - nums[index+1]) / 10
+            result = aDigit * bDigit
+            nums[index] = result
             
-        nums[0] = carryOn
         return nums
         
     def multiply(self, num1, num2):
@@ -30,7 +27,7 @@ class Solution(object):
         """
         
         # shrink time for get rid of leading 0
-        if (num1 == "0" or num2 == "0"):
+        if num1 == "0" or num2 == "0":
             return "0"
         
         length2 = len(num2)
@@ -53,7 +50,8 @@ class Solution(object):
         
         
         # get rid of leading 0
-        while result[0] == 0:
-            del result[0]
+        i = 0 
+        while result[i] == 0:
+            i += 1
         
-        return ''.join(str(x) for x in result)
+        return ''.join(str(x) for x in result[i:])
