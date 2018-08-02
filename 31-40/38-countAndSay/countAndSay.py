@@ -7,7 +7,7 @@ class Solution(object):
         
         num = "1"
         
-        for i in range(1, n):
+        for _ in range(1, n):
             digit = num[0]
             count = 1
             newNum = ""
