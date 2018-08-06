@@ -6,7 +6,7 @@ class Solution(object):
         """
         
         length = len(nums)
-        i = times = 0
+        i = times = startIndex = 0
         
         while i < length - 1:
             num = nums[i] or 1
@@ -14,12 +14,13 @@ class Solution(object):
                 return times + 1
             
             maximum = 0
-            for j in range(i + 1, i + num + 1):
+            for j in range(startIndex + 1, i + num + 1):
                 if maximum <= j + nums[j]:
                     maximum = j + nums[j]
                     maxIndex = j
                     
             times += 1
+            startIndex = i + num
             i = maxIndex
                         
         return times
