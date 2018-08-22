@@ -30,7 +30,6 @@ do
             fi
 
             START=$((INDEX/10*10+1))
-            echo $START $((START+9))
             DIR=$START-$((START+9))
 
             if [ ! -d $DIR ]; then
@@ -44,8 +43,7 @@ do
             file=$DIR
         fi
 
-        if [[ $file == *[1-9]0 || $DIR == *[1-9]0 ]]; then
-
+        if [[ $file =~ .*[1-9]0$ ]]; then
             INDEX=${file%%-*}
             if [[ ! $INDEX =~ [0-9]+ ]]; then
                 echo Directory \"$file\" is not a valid Directory
