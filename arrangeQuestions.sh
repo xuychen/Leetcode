@@ -1,9 +1,12 @@
 # !/bin/bash
 
 cd $1
+except=' miscellaneous arrangeQuestions.sh '
+
 for file in *
 do
-    if [[ $file == .* || $file == miscellaneous ]]; then
+    if [[ $file == .* || $except =~ (.* $file .*) ]]; then
+        echo File \"$file\" is skipped
         continue
     fi
 
