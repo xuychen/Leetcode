@@ -14,6 +14,7 @@ do
         if [[ -d $SHORT || -e $SHORT.* ]]; then
             DIR=$SHORT
         elif [ ! -d $DIR ]; then
+            echo creating Directory \"$DIR\"
             mkdir $DIR
         fi
 
@@ -21,7 +22,6 @@ do
         echo FILE \"$file\" is putting in Directory \"$DIR\"
         echo Please give it a question number at the beginning of Directory
     else
-        DIR=""
         if [[ $file == *-[^0-9]* ]]; then
             INDEX=${file%%-*}
             if [[ ! $INDEX =~ [0-9]+ ]]; then
@@ -34,11 +34,14 @@ do
             DIR=$START-$((START+9))
 
             if [ ! -d $DIR ]; then
+                echo creating Directory \"$DIR\"
                 mkdir $DIR
             fi
 
             mv $file $DIR
             echo sub-Directory \"$file\" is putting in Directory \"$DIR\"
+            
+            file=$DIR
         fi
 
         if [[ $file == *[1-9]0 || $DIR == *[1-9]0 ]]; then
@@ -53,6 +56,7 @@ do
             DIR=$START-$((START+99))
 
             if [ ! -d $DIR ]; then
+                echo creating Directory \"$DIR\"
                 mkdir $DIR
             fi
 
