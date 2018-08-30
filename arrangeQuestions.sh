@@ -1,7 +1,7 @@
 # !/bin/bash
 
 cd $1
-except=' miscellaneous arrangeQuestions.sh '
+except=' miscellaneous arrangeQuestions.sh createFile.sh '
 
 for file in *; do
     if [[ $file == .* || $except =~ (.* $file .*) ]]; then
