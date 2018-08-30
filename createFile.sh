@@ -4,12 +4,7 @@
 
 extension=' c cpp java py sh js ' 
 
-if [[ ! -e "$2.$3" ]]; then
-    touch "$2.$3"
-    echo create File \"$2.$3\"
-fi
-
-if [[ ! $1 =~ [0-9]+ ]]; then
+if [[ ! $1 =~ ^[0-9]+$ ]]; then
     echo Error: \"$1\" is not a valid number
     exit 1
 fi
@@ -17,6 +12,11 @@ fi
 if [[ ! $extension =~ (.* $3 .*) ]]; then
     echo Error: \"$3\" is not a valid extension
     exit 1
+fi
+
+if [[ ! -e "$2.$3" ]]; then
+    touch "$2.$3"
+    echo create File \"$2.$3\"
 fi
 
 if [ ! -d "$1-$2" ]; then
