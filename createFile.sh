@@ -19,9 +19,10 @@ if [[ ! -e "$2.$3" ]]; then
     echo create File \"$2.$3\"
 fi
 
-if [ ! -d "$1-$2" ]; then
-    mkdir "$1-$2"
-    echo creating Directory \"$1-$2\"
+if [ ! -d $1-* ]; then
+    short=${2%%-*}
+    mkdir "$1-$short"
+    echo creating Directory \"$1-$short\"
 fi
 
-mv "$2.$3" $1-$2
+mv "$2.$3" $1-*
