@@ -56,4 +56,38 @@ class Solution {
 
         return head;
     }
+
+    ListNode* addTwoNumbers2(ListNode* l1, ListNode* l2) {
+        ListNode *prev = NULL;
+        ListNode *head = NULL;
+        int carryOn = 0;
+        int l1value, l2value;
+        
+        while (l1 || l2) {
+            l1value = l2value = 0;
+            if (l1) {
+                l1value = l1->val;
+                l1 = l1->next;
+            }
+            if (l2) {
+                l2value = l2->val;
+                l2 = l2->next;
+            }
+            
+            int value = l1value + l2value + carryOn;
+            carryOn = value / 10;
+            value -= carryOn * 10;
+            
+            ListNode *newNode = new ListNode(value);
+            if (prev)
+                prev = prev->next = newNode;
+            else
+                head = prev = newNode;
+        }
+        
+        if (carryOn)
+            prev->next = new ListNode(carryOn);
+        
+        return head;
+    }
 };
