@@ -35,7 +35,6 @@ TrieNode::TrieNode(): count(0) {
 int TrieNode::search(string &str, char firstLetter) {
     int result = 0;
 
-
     if (!firstLetter)
         result += count;
 
