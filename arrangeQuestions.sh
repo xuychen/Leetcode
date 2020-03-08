@@ -1,6 +1,13 @@
 # !/bin/bash
+# $ ./arrangeQuestions.sh /path/to/directory 
+# OR 
+# $ ./arrangeQuestions.sh
 
-cd $1
+
+if [ $# -gt 1 ]; then
+    cd $1
+fi
+
 except=' miscellaneous arrangeQuestions.sh createFile.sh '
 
 for file in *; do
