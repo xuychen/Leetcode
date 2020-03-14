@@ -1,4 +1,5 @@
 # "Union Find" Solution from others
+# small range, for n <= 256
 def makeConnected(self, n, connections):
     if len(connections) < n - 1:
         return -1
@@ -7,6 +8,7 @@ def makeConnected(self, n, connections):
         s = s.replace(s[a], s[b])
     return len(set(s)) - 1
 
+# general ver. 
 def makeConnected2(self, n, connections):
     if len(connections) < n - 1: return -1
     G = [set() for i in xrange(n)]
