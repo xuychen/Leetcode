@@ -18,7 +18,8 @@ void UnionFind::merge(int x, int y) {
 }
 
 int UnionFind::find(int x) {
-    return unionSet.emplace(x, x).second ? x : find(unionSet[x]);
+    unionSet.emplace(x, x);
+    return unionSet[x] == x ? x : find(unionSet[x]);
 }
 
 class Solution {
