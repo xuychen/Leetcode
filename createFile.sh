@@ -34,16 +34,17 @@ if [[ $# == 2 ]]; then
         fi
     fi
 elif [[ $# == 3 ]]; then
-    if [[ ! -e "$2.$3" ]]; then
-        touch "$2.$3"
-        echo create File \"$2.$3\"
+    FILENAME="$2.$3"
+    if [[ ! -e $FILENAME ]]; then
+        touch $FILENAME
+        echo create File \"$FILENAME\"
     fi
 
-    if [ ! -d $1-* ]; then
-        short=${2%%-*}
-        mkdir "$1-$short"
-        echo creating Directory \"$1-$short\"
+    DIRECTORY=$1-${2%%-*}
+    if [ ! -d $DIRECTORY ]; then
+        mkdir $DIRECTORY
+        echo creating Directory \"$DIRECTORY\"
     fi
 
-    mv "$2.$3" $1-*
+    mv $FILENAME $DIRECTORY
 fi
