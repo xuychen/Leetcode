@@ -3,7 +3,7 @@
 # cmd is ./createFile.sh {questionNumber} {filename} {extension}
 # or ./createFile.sh {questionNumber} {extension}
 
-extension=' c cpp java py sh js '
+extension=' c cpp java py sh js sql '
 
 if [[ ! $1 =~ ^[0-9]+$ ]]; then
     echo Error: \"$1\" is not a valid number
