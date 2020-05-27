@@ -15,9 +15,10 @@ if [[ ! $extension =~ (.* ${@: -1} .*) ]]; then
     exit 1
 fi
 
+INDEX=$(($1-1)) # questions 1-10 have index 0-9
 if [[ $# == 2 ]]; then
-    START100=$(($1/100*100+1)) # directory start_index
-    START10=$(($1/10*10+1))
+    START100=$(($INDEX/100*100+1)) # directory start_index
+    START10=$(($INDEX/10*10+1))
     DIRECTORY=`find $START100-*/$START10-*/* -name $1-*`
 
     if [ -z $DIRECTORY ]; then
