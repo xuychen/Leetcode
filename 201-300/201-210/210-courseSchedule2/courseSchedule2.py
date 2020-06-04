@@ -33,8 +33,6 @@ class Solution(object):
 
         return result if sum(degrees) == 0 else []
 
-    import Queue
-
     # BFS Solution from others
     def findOrder2(self, numCourses, prerequisites):
         dic = {i: set() for i in xrange(numCourses)}
