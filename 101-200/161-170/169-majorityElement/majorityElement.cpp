@@ -23,14 +23,14 @@ public:
 
     // Boyer-Moore Majority Vote Algorithm
     // http://www.cs.utexas.edu/~moore/best-ideas/mjrty/
-    int BoyerMooreMajorityVote(vector<int>& nums) {
-        int major = num[0], count = 1;
+    int majorityElement(vector<int>& nums) {
+        int major = INT_MAX, count = 0;
         for (auto it: nums)
             if (count == 0) {
                 ++count;
                 major = it;
             }
-            else if (major == num[i])
+            else if (major == it)
                 ++count;
             else
                 --count;
