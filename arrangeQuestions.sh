@@ -1,6 +1,6 @@
 # !/bin/bash
-# $ ./arrangeQuestions.sh /path/to/directory 
-# OR 
+# $ ./arrangeQuestions.sh /path/to/directory
+# OR
 # $ ./arrangeQuestions.sh
 
 
@@ -8,7 +8,7 @@ if [ $# -gt 1 ]; then
     cd $1
 fi
 
-except=' miscellaneous arrangeQuestions.sh createFile.sh '
+except=' miscellaneous arrangeQuestions.sh createFile.sh LICENSE README.md '
 
 for file in *; do
     # skippingn files in variable except
