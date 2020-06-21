@@ -14,8 +14,10 @@ public:
                 fast = nums[fast];
                 slow = nums[slow];
             }
+
             return slow;
         }
+
         return -1;
     }
 
@@ -28,6 +30,7 @@ public:
 
             n <= m ? l = m + 1 : r = m;
         }
+        
         return l;
     }
 };
