@@ -40,15 +40,14 @@ class MedianFinder(object):
 
 
 class MedianFinder2:
-
     def __init__(self):
         self.heaps = [], []
 
     def addNum(self, num):
         small, large = self.heaps
-        heapq.heappush(small, -heapq.hheappushpop(large, num))
+        heapq.heappush(small, -heapq.heappushpop(large, num))
         if len(large) < len(small):
-            heapq.hheappush(large, -heapq.hheappop(small))
+            heapq.heappush(large, -heapq.heappop(small))
 
     def findMedian(self):
         small, large = self.heaps
