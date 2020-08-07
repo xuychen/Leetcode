@@ -1,9 +1,9 @@
 # Definition for a binary tree node.
-class TreeNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 import Queue
 
@@ -23,11 +23,12 @@ class Codec:
             node = qe.get()
 
             if node:
-                data.append(node.val)
+                data.append(str(node.val))
                 qe.put(node.left)
                 qe.put(node.right)
             else:
                 data.append("null")
+
 
         return " ".join(data)
 
@@ -38,26 +39,26 @@ class Codec:
         :rtype: TreeNode
         """
 
-        array = data.split()
+        myiter = iter(data.split())
         qe = Queue.Queue(maxsize=0)
-        if array[0] == "null":
+        item = next(myiter)
+        if item == "null":
             return None
 
-        root = TreeNode(int(array[0]))
-        index = 1
+        root = TreeNode(int(item))
         qe.put(root)
 
         while not qe.empty():
-            node = qe.pop()
-            if array[index] != "null":
-                node.left = TreeNode(int(array[index]))
+            node = qe.get()
+            item = next(myiter)
+            if item != "null":
+                node.left = TreeNode(int(item))
                 qe.put(node.left)
-                index += 1
 
-            if array[index] != "null":
-                node.right = TreeNode(int(array[index]))
+            item = next(myiter)
+            if item != "null":
+                node.right = TreeNode(int(item))
                 qe.put(node.right)
-                index += 1
 
         return root
 
