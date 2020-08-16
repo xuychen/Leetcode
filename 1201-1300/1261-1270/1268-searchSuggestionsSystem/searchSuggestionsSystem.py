@@ -54,7 +54,7 @@ class Solution(object):
         return suffixTrie.searchWordWithPrefix(searchWord)
 
     # binary search with prefix solution
-    def suggestedProducts(self, A, word):
+    def suggestedProducts2(self, A, word):
         A.sort()
         res, prefix, i = [], '', 0
         for c in word:
