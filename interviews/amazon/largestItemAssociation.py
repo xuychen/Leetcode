@@ -36,3 +36,21 @@ items2 = [["item3","item4"],
 
 print largest_item_association(items1) # 3
 print largest_item_association(items2) # 9
+
+print(largest_item_association([['A', 'B'], ['D', 'E'], ['C', 'D']]) == 3)
+print(largest_item_association([['A', 'B'], ['C', 'D'], ['F', 'E']]) == 2)
+print(largest_item_association([['A', 'B'], ['C', 'D'], ['D', 'E'], ['F', 'E']]) == 4)
+print(largest_item_association([['A', 'B'], ['C', 'D'], ['D', 'E'], ['F', 'E'], ['A', 'C']]) == 6)
+print(largest_item_association([['A', 'B'], ['F', 'E'], ['G', 'K'], ['C', 'D'], ['D', 'E'],
+            ['X', 'G'], ['X', 'N'], ['K', 'L'], ['L', 'M'], ['F', 'E'],
+            ['A', 'C'],]) == 6)
+print(largest_item_association([['item1','item2'],['item3','item4'],['item4','item5']]) == 3)
+print(largest_item_association([['item1','item2'],['item2','item5'],['item3', 'item6']]) == 3)
+print(largest_item_association([['item1','item2'],['item2','item3'],['item4','item5'],['item5','item6']]) == 3)
+print(largest_item_association([["item1","item2"], ["item1","item3"], ["item2","item7"], ["item3","item7"], ["item5","item6"], ["item3","item7"]]) == 4)
+
+print(largest_item_association([['item1', 'item2'], ['item1', 'item4'], ['item3', 'item4'], ['item4', 'item5']]) == 5)
+
+print(largest_item_association([["item3","item4"], ["item1","item2"], ["item5","item6"], ["item4","item5"], ["item2","item7"], ["item7","item8"]]) == 4)
+
+print(largest_item_association([["item1","item2"], ["item3","item4"], ["item5","item6"], ["item4","item5"]]) == 4)
