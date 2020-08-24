@@ -34,8 +34,8 @@ items2 = [["item3","item4"],
 ["item6","item7"],
 ["item0","item2"]]
 
-print largest_item_association(items1) # 3
-print largest_item_association(items2) # 9
+print (largest_item_association(items1)) # 3
+print (largest_item_association(items2)) # 9
 
 print(largest_item_association([['A', 'B'], ['D', 'E'], ['C', 'D']]) == 3)
 print(largest_item_association([['A', 'B'], ['C', 'D'], ['F', 'E']]) == 2)
