@@ -1,3 +1,6 @@
+from collections import Counter
+import heapq
+
 class Solution(object):
     def thirdMax(self, nums):
         """
