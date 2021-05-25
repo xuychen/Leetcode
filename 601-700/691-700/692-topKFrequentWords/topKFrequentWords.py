@@ -1,4 +1,5 @@
 import heapq
+from collections import Counter
 
 class Solution(object):
     def topKFrequent(self, words, k):
