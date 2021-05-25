@@ -5,7 +5,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numberOfBoomerangs(vector<vector<int>>& points) {
+    int numberOfBoomerangs(vector<vector<int> >& points) {
         int booms = 0;
         for (auto &p : points) {
             unordered_map<double, int> ctr(points.size());
