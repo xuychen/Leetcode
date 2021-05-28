@@ -29,3 +29,24 @@ class Solution(object):
         while (root.val - p.val) * (root.val - q.val) > 0:
             root = (root.left, root.right)[p.val > root.val]
         return root
+
+    def lowestCommonAncestor3(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+
+        if not root:
+            return None
+        if root == p or root == q:
+            return root
+
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+
+        if left and right:
+            return root
+        else:
+            return left or right

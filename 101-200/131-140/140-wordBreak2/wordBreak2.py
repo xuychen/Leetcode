@@ -22,3 +22,23 @@ class Solution(object):
                         dp[i - len(word)].append((word, i))
 
         return self.dfs(0, dp, "")
+
+    def wordBreak2(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: List[str]
+        """
+
+        length = len(s)
+        dp = [[] for _ in range(length+1)]
+        dp[0].append("")
+
+        for i in range(length):
+            if dp[i]:
+                for word in wordDict:
+                    if s.startswith(word, i):
+                        for lhs in dp[i]:
+                            dp[i + len(word)].append(lhs+" "+word if lhs else word)
+
+        return dp[-1]
