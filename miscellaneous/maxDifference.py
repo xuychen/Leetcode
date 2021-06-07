@@ -13,5 +13,5 @@ def maxDifference(array):
 import random
 arr = random.sample(range(1, 200), 30)
 
-print arr
-print maxDifference(arr)
+print (arr)
+print (maxDifference(arr))
