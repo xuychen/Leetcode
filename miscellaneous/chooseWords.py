@@ -35,4 +35,4 @@ def compare(origin, target, option):
     
     return [origin]
 
-print chooseWords(["apples", "aple", "apply", "appal", "ellypse"], "apple")
+print (chooseWords(["apples", "aple", "apply", "appal", "ellypse"], "apple"))

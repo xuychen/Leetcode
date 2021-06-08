@@ -60,4 +60,4 @@ def levelOrderCheck(root):
 
         
 root = arrayToTree([1,-2,-3,1,3,-2,"null",-1])
-print levelOrderCheck(root)
+print(levelOrderCheck(root))
