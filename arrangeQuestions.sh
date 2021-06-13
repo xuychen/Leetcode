@@ -8,7 +8,7 @@ if [ $# -gt 1 ]; then
     cd $1
 fi
 
-except=' miscellaneous interviews jianzhi arrangeQuestions.sh createFile.sh LICENSE README.md '
+except=' miscellaneous interviews LCOF arrangeQuestions.sh createFile.sh LICENSE README.md '
 
 for file in *; do
     # skippingn files in variable except
