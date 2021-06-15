@@ -1,11 +1,11 @@
+import Queue
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
-
-import Queue
 
 class Codec:
     def serialize(self, root):
@@ -15,22 +15,20 @@ class Codec:
         :rtype: str
         """
 
+        result = []
         qe = Queue.Queue(maxsize=0)
         qe.put(root)
-        data = []
 
         while not qe.empty():
             node = qe.get()
-
-            if node:
-                data.append(str(node.val))
+            if not node:
+                result.append("None")
+            else:
+                result.append(str(node.val))
                 qe.put(node.left)
                 qe.put(node.right)
-            else:
-                data.append("null")
 
-
-        return " ".join(data)
+        return ','.join(result)
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -39,26 +37,24 @@ class Codec:
         :rtype: TreeNode
         """
 
-        myiter = iter(data.split())
         qe = Queue.Queue(maxsize=0)
-        item = next(myiter)
-        if item == "null":
-            return None
+        split_data = data.split(",")
 
-        root = TreeNode(int(item))
+        root = TreeNode(split_data[0]) if split_data[0] != "None" else None
+        index = 1
+        length = len(split_data)
         qe.put(root)
 
-        while not qe.empty():
+        while index < length:
             node = qe.get()
-            item = next(myiter)
-            if item != "null":
-                node.left = TreeNode(int(item))
+            if split_data[index] != "None":
+                node.left = TreeNode(int(split_data[index]))
                 qe.put(node.left)
-
-            item = next(myiter)
-            if item != "null":
-                node.right = TreeNode(int(item))
+            if split_data[index+1] != "None":
+                node.right = TreeNode(int(split_data[index+1]))
                 qe.put(node.right)
+
+            index += 2
 
         return root
 
