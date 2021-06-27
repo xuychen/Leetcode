@@ -7,7 +7,7 @@ template <typename T>
 class Vector {
     vector<T> data;
 public:
-    Vector<T>();
+    Vector<T>() {};
     Vector<T>(const vector<T>& vec);
 
     vector<T> _getData() const;
@@ -27,10 +27,6 @@ public:
         return os;
     }
 };
-
-template<typename T>
-Vector<T>::Vector() {
-}
 
 template<typename T>
 Vector<T>::Vector(const vector<T>& vec) {
