@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <cstdarg>
 
 using namespace std;
 
@@ -8,6 +9,7 @@ class Vector {
     vector<T> data;
 public:
     Vector() {};
+    Vector(T num1, ...);
     Vector(const vector<T>& vec);
 
     vector<T> _getData() const;
@@ -27,6 +29,17 @@ public:
         return os;
     }
 };
+
+template<typename T>
+Vector<T>::Vector(T num1, ...) {
+    va_list vaPtr;
+    va_start(vaPtr, num1);
+    data.push_back(num1);
+    while ((num1 = va_arg(vaPtr, T)) != 0)
+        data.push_back(num1);
+
+    va_end(vaPtr);
+}
 
 template<typename T>
 Vector<T>::Vector(const vector<T>& vec) {
@@ -75,11 +88,11 @@ T Vector<T>::operator*(const Vector<T>& rhs) const {
 }
 
 int main() {
-    vector<double> vlhs = {1.1,2,3};
-    vector<double> vrhs = {1,2.5,4};
+    vector<double> vlhs = {1.1,2.0,30.1};
+    // vector<double> vrhs = {1,2.5,4};
     Vector<double> lhs = Vector<double>(vlhs);
-    Vector<double> rhs = Vector<double>(vrhs);
+    Vector<double> rhs = Vector<double>(3,2.0,11.1);
 
-    cout << lhs + rhs << lhs - rhs << lhs * rhs << endl;
+    cout << lhs << rhs << lhs + rhs << lhs - rhs << lhs * rhs << endl;
     return 0;
 }
