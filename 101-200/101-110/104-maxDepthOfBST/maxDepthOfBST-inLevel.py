@@ -11,16 +11,16 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-         
+
         queue = []
         level = 0
         queueFront = queueBack = 0
-        
+
         if root:
             queue.append(root)
             queueFront += 1
             level += 1
-        
+
         while queueBack < queueFront:
             increase = 0
             while queueBack < queueFront:
@@ -35,5 +35,16 @@ class Solution(object):
             if increase:
                 queueFront += increase
                 level += 1
-        
+
         return level
+
+    def maxDepth2(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+
+        if not root:
+            return 0
+
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
