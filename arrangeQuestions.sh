@@ -11,7 +11,7 @@ fi
 except=' miscellaneous interviews LCOF LCP arrangeQuestions.sh createFile.sh LICENSE README.md '
 
 for file in *; do
-    # skippingn files in variable except
+    # skipping files in variable except
     if [[ $file == .* || $except =~ (.* $file .*) ]]; then
         echo \"$file\" is skipped
         continue
@@ -64,6 +64,8 @@ for file in *; do
                         echo File \"${SUB_FILE##*/}\" is putting in Directory \"$PATH1\"
                     fi
                 done
+
+                rm -r $file
             elif [ -d $PATH10 ]; then
                 # if base directory does not exist in main catalogs
                 mv $file $PATH10
@@ -83,16 +85,20 @@ for file in *; do
         fi
 
         if [[ $file =~ .*[0-9]0$ && $file != $DIR100 ]]; then
+            # if it is a ten-base directory. e.g. 1-10
             if [ ! -d $DIR100 ]; then
+                # if directory does not exist
                 echo creating Directory \"$DIR100\"
                 mkdir $DIR100
             fi
 
             if [ -d "$DIR100/$file" ]; then
+                # if exist in 100-base directory
                 echo exist a Directory with the same name under Directory \"$DIR100\"
                 mv $file/* $DIR100/$file
                 rmdir $file
             else
+                #else
                 mv $file $DIR100
             fi
 
