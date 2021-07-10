@@ -45,7 +45,7 @@ for file in *; do
         START100=$((INDEX/100*100+1)) # directory start_index
         DIR100=$START100-$((START100+99)) # directory end_index
 
-        if [[ $file == *-[^0-9]* ]]; then
+        if [[ $file =~ .*-.*[A-Za-z].* ]]; then
             # if it is a base directory, e.g. 35-findInsertPosition
             START=$((INDEX/10*10+1))
             DIR=$START-$((START+9))
