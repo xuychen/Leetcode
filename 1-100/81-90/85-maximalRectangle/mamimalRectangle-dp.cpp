@@ -1,5 +1,5 @@
 // this solution is from Leetcode, which is not my work
-// since I cannot find a way to improve it, I just leave it as it is 
+// since I cannot find a way to improve it, I just leave it as it is
 
 // add libraries to get rid of compiling errors
 #include <vector>
@@ -19,8 +19,7 @@ class Solution {
         int maxA = 0;
         for (int i = 0; i < m; i++) {
             int cur_left = 0, cur_right = n;
-            for (int j = 0; j < n;
-                 j++) {  // compute height (can do this from either side)
+            for (int j = 0; j < n; j++) {  // compute height (can do this from either side)
                 if (matrix[i][j] == '1')
                     height[j]++;
                 else
