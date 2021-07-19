@@ -25,3 +25,17 @@ class Solution(object):
             nodeB = nodeB.next
 
         return None
+
+    def getIntersectionNode2(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+
+        node_a, node_b = headA, headB
+
+        while node_a != node_b:
+            node_a = node_a.next if node_a else headB
+            node_b = node_b.next if node_b else headA
+
+        return node_a
