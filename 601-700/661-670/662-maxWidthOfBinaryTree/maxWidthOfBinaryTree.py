@@ -1,4 +1,5 @@
 import Queue
+from collections import deque
 
 # Definition for a binary tree node.
 class TreeNode(object):
@@ -48,3 +49,31 @@ class Solution(object):
                     for kid in enumerate((node.left, node.right), 2 * number)
                     if kid[1]]
         return width
+
+class Solution2(object):
+    def widthOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+
+        qe = deque()
+        qe.append((root, 1, 0))
+        minimum, maximum = float('inf'), float('-inf')
+        level = 1
+        result = 0
+
+        while qe:
+            if qe[0][1] == level:
+                node, lvl, index = qe.popleft()
+                if node:
+                    minimum = min(minimum, index)
+                    maximum = max(maximum, index)
+                    qe.append((node.left, lvl+1, index*2))
+                    qe.append((node.right, lvl+1, index*2+1))
+                    result = max(result, maximum - minimum + 1)
+            else:
+                minimum, maximum = float('inf'), float('-inf')
+                level += 1
+
+        return result
