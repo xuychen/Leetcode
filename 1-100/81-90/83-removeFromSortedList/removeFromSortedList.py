@@ -10,16 +10,36 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        
+
         node = head.next if head else None
         prev = head
-        
+
         while node:
             if node.val == prev.val:
                 prev.next = node.next
             else:
                 prev = node
-                
+
             node = prev.next
-            
+
+        return head
+
+    def deleteDuplicates2(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+
+        start = end = head
+
+        while end:
+            if start.val != end.val:
+                start.next = end
+                start = start.next
+
+            end = end.next
+
+        if start != end:
+            start.next = end
+
         return head
