@@ -1,3 +1,5 @@
+from itertools import count
+
 class Solution(object):
     def compress(self, chars):
         """
