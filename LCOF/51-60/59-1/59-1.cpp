@@ -1,6 +1,8 @@
 #include <list>
 #include <queue>
 
+using namespace std;
+
 class Solution {
 public:
     list<int>::iterator orderedInsert(list<int>& linkedlist, int value) {
