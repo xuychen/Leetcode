@@ -163,3 +163,6 @@ dmypy.json
 
 # .vscode
 .vscode/
+
+# data
+input*.txt
