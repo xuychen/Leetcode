@@ -26,3 +26,46 @@ class Solution(object):
             it = iter(s)
             if all(c in it for c in word): return word
         return ''
+
+class TrieNode(object):
+    def __init__(self, c):
+        self.char = c
+        self.children = [None] * 26
+
+    def add_child(self, node):
+        self.children[ord(node.char)-97] = node
+
+    def find_child(self, c):
+        return self.children[ord(c)-97]
+
+class Solution2(object):
+    def findLongestWord(self, s, dictionary):
+        """
+        :type s: str
+        :type dictionary: List[str]
+        :rtype: str
+        """
+
+        length = len(s)
+        candidates = TrieNode("")
+        result = ""
+
+        for i in range(length-1, -1, -1):
+            node = TrieNode(s[i])
+            for candidate in candidates.children:
+                if candidate:
+                    node.add_child(candidate)
+
+            candidates.add_child(node)
+
+        for target in sorted(dictionary):
+            node = candidates
+            for char in target:
+                node = node.find_child(char)
+                if not node:
+                    break
+
+            if node and len(target) > len(result):
+                result = target
+
+        return result
