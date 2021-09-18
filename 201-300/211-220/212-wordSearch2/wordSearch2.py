@@ -1,44 +1,21 @@
-import collections
-
-class TrieNode():
-    def __init__(self):
-        self.children = collections.defaultdict(TrieNode)
-        self.has_word = False
-
-class Trie():
-    def __init__(self):
-        self.root = TrieNode()
-
-    def insert(self, word):
-        node = self.root
-        for w in word:
-            node = node.children[w]
-
-        node.has_word = True
-
 class Solution(object):
-    def dfs(self, i, j, rows, cols, board, node, string):
-        result = []
-        if not node:
-            return result
+    def dfs(self, i, j, n_rows, n_cols, word, index, board):
+        if index == -1:
+            return True
+        if i < 0 or i >= n_rows or j < 0 or j >= n_cols or board[i][j] != word[index]:
+            return False
 
-        if node.has_word:
-            node.has_word = False
-            result.append(string)
+        tmp = board[i][j]
+        board[i][j] = ""
+        operations = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
-        if  i < 0 or j < 0 or i >= rows or j >= cols or board[i][j] == '#':
-            return result
+        for ix, iy in operations:
+            if self.dfs(i+ix, j+iy, n_rows, n_cols, word, index-1, board):
+                board[i][j] = tmp
+                return True
 
-        char, board[i][j] = board[i][j], '#'
-        node = node.children.get(char, None)
-
-        result += self.dfs(i-1, j, rows, cols, board, node, string+char) \
-                + self.dfs(i, j-1, rows, cols, board, node, string+char) \
-                + self.dfs(i+1, j, rows, cols, board, node, string+char) \
-                + self.dfs(i, j+1, rows, cols, board, node, string+char)
-
-        board[i][j] = char
-        return result
+        board[i][j] = tmp
+        return False
 
     def findWords(self, board, words):
         """
@@ -47,15 +24,19 @@ class Solution(object):
         :rtype: List[str]
         """
 
-        rows = len(board)
-        cols = len(board[0])
-        trie = Trie()
+        n_rows, n_cols = len(board), len(board[0])
+        dictionary = [[] for _ in range(26)]
+
+        for i in range(n_rows):
+            for j in range(n_cols):
+                dictionary[ord(board[i][j])-97].append((i, j))
+
         result = []
         for word in words:
-            trie.insert(word)
-
-        for i in range(rows):
-            for j in range(cols):
-                result += self.dfs(i, j, rows, cols, board, trie.root, "")
+            length = len(word)
+            for i, j in dictionary[ord(word[-1])-97]:
+                if self.dfs(i, j, n_rows, n_cols, word, length-1, board):
+                    result.append(word)
+                    break
 
         return result
