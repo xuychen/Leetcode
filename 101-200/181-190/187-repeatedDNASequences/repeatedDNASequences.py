@@ -1,4 +1,3 @@
-
 class SuffixTrieNode(object):
     def __init__(self):
         self._count = 0
@@ -32,3 +31,27 @@ class Solution(object):
             node._count += 1
 
         return self.dfs(root, "")
+
+class Solution2(object):
+    def findRepeatedDnaSequences(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+
+        dictionary = {}
+        length = len(s)
+        result = []
+
+        if length <= 10:
+            return []
+
+        for i in range(length-9):
+            seg = s[i:i+10]
+            if seg not in dictionary:
+                dictionary[seg] = True
+            elif dictionary[seg]:
+                result.append(seg)
+                dictionary[seg] = False
+
+        return result
