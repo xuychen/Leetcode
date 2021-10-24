@@ -27,3 +27,22 @@ class Solution(object):
             return node.val, k
 
         return self.kthSmallestHelper(node.right, k)
+
+class Solution2(object):
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+
+        return self.helper(root, 1, k)[1]
+
+    def helper(self, node, count, k):
+        if not node:
+            return count, None
+
+        left_count, left_value = self.helper(node.left, count, k)
+        value = (left_count == k) * node.val
+        right_count, right_value = self.helper(node.right, left_count+1, k)
+        return right_count, left_value or right_value or value
